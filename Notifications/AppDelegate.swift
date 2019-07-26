@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         bage = 0
+        
        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
