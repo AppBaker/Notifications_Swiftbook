@@ -18,6 +18,10 @@ class TableViewController: UITableViewController {
                          "Push Notification with  APNs",
                          "Push Notification with Firebase",
                          "Push Notification with Content"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
     // MARK: - Table view data source
 
@@ -48,7 +52,7 @@ class TableViewController: UITableViewController {
                                       preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-            self.appDelegate?.sheduelNotification(notificationType: notificationType)
+            self.appDelegate?.scheduelNotification(notificationType: notificationType)
         }
         
         alert.addAction(okAction)

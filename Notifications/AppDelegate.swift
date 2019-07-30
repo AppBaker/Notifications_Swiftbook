@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         requestAutorization()
+        notificationCenter.delegate = self
         return true
     }
 
@@ -47,17 +48,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func sheduelNotification(notificationType: String) {
+    func scheduelNotification(notificationType: String) {
         bage += 1
         let content = UNMutableNotificationContent()
+        let userAction = "User Action"
+        
         content.title = notificationType
         content.body = "This is example how to create \(notificationType)"
         content.sound = .default
         content.badge = bage as NSNumber
+        content.categoryIdentifier = userAction
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
-        let identifire = "\(UUID())"
+        let identifire = notificationType
         
         let request = UNNotificationRequest(identifier: identifire, content: content, trigger: trigger)
         
@@ -66,8 +70,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Error: \(error.localizedDescription)")
             }
         }
+        
+        let snoozeAction = UNNotificationAction(identifier: "Snooze", title: "Snooze", options: [])
+        let deleteAction = UNNotificationAction(identifier: "Delete", title: "Delete", options: [.destructive])
+        
+        let category = UNNotificationCategory(identifier: userAction,
+                                              actions: [snoozeAction, deleteAction],
+                                              intentIdentifiers: [],
+                                              options: [])
+        notificationCenter.setNotificationCategories([category])
     }
-
-
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        completionHandler([.alert, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+//            let alertController = UIAlertController(title: "Notification", message: response.notification.request.identifier, preferredStyle: .alert)
+//            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+//            alertController.addAction(okAction)
+        
+        
+        print ("Handling notification with the \(response.notification.request.identifier)")
+        
+        switch response.actionIdentifier {
+        case UNNotificationDismissActionIdentifier:
+            print("Dismiss Action")
+        case UNNotificationDefaultActionIdentifier:
+            print("Default")
+        case "Snooze":
+            print("Snooze")
+            scheduelNotification(notificationType: "Reminder")
+        case "Delete":
+            print("Delete")
+        default:
+            print("Unknown action")
+        }
+        
+        completionHandler()
+    }
+
+}
