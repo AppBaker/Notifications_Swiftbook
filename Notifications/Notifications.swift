@@ -46,7 +46,7 @@ class Notifications: NSObject {
         content.badge = bage as NSNumber
         content.categoryIdentifier = userAction
         
-        guard let path = Bundle.main.path(forResource: "icon", ofType: "png") else { return }
+        guard let path = Bundle.main.path(forResource: "diamond", ofType: "png") else { return }
         
         let url = URL(fileURLWithPath: path)
         
@@ -84,12 +84,12 @@ class Notifications: NSObject {
 extension Notifications: UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
+        print("BODY: " + notification.request.content.body)
         completionHandler([.alert, .sound])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+        print("BODY: " + response.notification.request.content.body)
         //            let alertController = UIAlertController(title: "Notification", message: response.notification.request.identifier, preferredStyle: .alert)
         //            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         //            alertController.addAction(okAction)

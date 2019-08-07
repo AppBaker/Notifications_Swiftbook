@@ -14,10 +14,10 @@ class NotificationService: UNNotificationServiceExtension {
     var bestAttemptContent: UNMutableNotificationContent?
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
-        print(#line, #function)
+        
         self.contentHandler = contentHandler
         bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
-        print("19")
+        
 //        if let bestAttemptContent = bestAttemptContent {
 //            // Modify the notification content here...
 //            bestAttemptContent.title = "\(bestAttemptContent.title) [modified]"
@@ -28,9 +28,6 @@ class NotificationService: UNNotificationServiceExtension {
         let apsData = bestAttemptContent.userInfo["aps"] as? [String: Any],
         let attachmentURLAsString = apsData["attachment-url"] as? String,
         let attachmentURL = URL(string: attachmentURLAsString) else { return }
-        
-        
-        print(attachmentURL)
         
         downloadImageFrom(url: attachmentURL) { (attachment) in
             if attachment != nil {
@@ -61,7 +58,7 @@ extension NotificationService {
             }
             var urlPath = URL(fileURLWithPath: NSTemporaryDirectory())
             
-            let uniqueURLEnding = ProcessInfo.processInfo.globallyUniqueString + ".jpg"
+            let uniqueURLEnding = ProcessInfo.processInfo.globallyUniqueString + ".png"
             
             urlPath = urlPath.appendingPathComponent(uniqueURLEnding)
             
