@@ -1,4 +1,4 @@
 #  Notifications
-##PUSH notifications
-##Local Notifications
+## PUSH notifications
+## Local Notifications
 
