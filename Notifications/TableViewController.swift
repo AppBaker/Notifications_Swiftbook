@@ -22,6 +22,11 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showAlert()
+    }
 
     // MARK: - Table view data source
 
@@ -62,5 +67,11 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.textColor = .white
+    }
+}
+
+extension TableViewController {
+    func showAlert() {
+        print("Function Show Alert", #function, #line)
     }
 }

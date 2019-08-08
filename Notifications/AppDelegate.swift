@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        notifications.bage = 0
         
        UIApplication.shared.applicationIconBadgeNumber = 0
     }
@@ -45,5 +44,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Faild to register: \(error)")
     }
-
 }
