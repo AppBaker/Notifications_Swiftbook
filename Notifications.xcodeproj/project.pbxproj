@@ -47,6 +47,7 @@
 		9910D52722F61DD40095311E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		9910D52922F61DD40095311E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		999D9C7522F4C2D100D78F10 /* Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notifications.entitlements; sourceTree = "<group>"; };
+		99EFFDD222FBF69800E2DCC9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		99F6069322F2185E00CB48E8 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		99F6069522F223F100CB48E8 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		A8217DDC20DBD56300895832 /* Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +89,7 @@
 		A8217DD320DBD56300895832 = {
 			isa = PBXGroup;
 			children = (
+				99EFFDD222FBF69800E2DCC9 /* README.md */,
 				A8217DDE20DBD56300895832 /* Notifications */,
 				9910D52622F61DD40095311E /* NotificationService */,
 				A8217DDD20DBD56300895832 /* Products */,
